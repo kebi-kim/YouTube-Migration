@@ -34,7 +34,6 @@ def get_all_subscriptions(youtube) -> List[Subscription]:
         response = request.execute()
 
         for item in response['items']:
-            # 딕셔너리 대신 Subscription 객체를 생성하여 추가
             subscriptions.append(Subscription(
                 id=item['snippet']['resourceId']['channelId'],
                 title=item['snippet']['title']
@@ -86,7 +85,6 @@ def main():
 
     print(f"\n--- 총 {len(source_subscriptions_data)}개의 구독 채널을 찾았습니다. ---")
     for sub in source_subscriptions_data:
-        # 객체의 속성에 접근 (sub['title'] -> sub.title)
         print(f"- {sub.title}")
     print("------------------------------------")
 
@@ -108,7 +106,6 @@ def main():
 
     # 4. 타겟 계정에 구독 추가
     print("\n타겟 계정에 구독을 추가하는 중...")
-    # 객체의 속성에 접근 (sub['id'] -> sub.id)
     channel_ids_to_subscribe = [sub.id for sub in source_subscriptions_data]
     subscribe_to_channels(target_youtube, channel_ids_to_subscribe)
     
